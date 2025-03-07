@@ -289,3 +289,7 @@ We use F₁-score and Intersection-over-Union (IoU) as evaluation metrics. Note 
 | CSAU-Net       | Channel→Spatial       | 85.89       | B       |
 | SCAU-Net       | Spatial→Channel       | 85.85       | C       |
 | SSAU-Net       | Scale-Sensitive       | **86.07**   | D       |
+
+Results obtained from (c) U-net, (d) CSAU-Net, (e) SCAU-Net, (f) SSAU-Net. (a), (b) are the corresponding remote sensing image and ground reference on the INRIA dataset.
+
+<p align="center"><img src="images/Results.jpg" align="center" width="900"></p>
