@@ -24,7 +24,8 @@
 
 
 ## 网络架构
-![SSAU-Net Architecture](./images/SSAU-Net Architecture.png)  
+<p align="center"><img src="images/SSAU-Net Architecture.png" align="center" width="900"></p>
+  
 
 ## 编码器-解码器结构
 编码器：通过4级下采样（encoder模块）逐步提取高层语义特征，每级包含卷积块（x2conv）和池化（MaxPool2d）
