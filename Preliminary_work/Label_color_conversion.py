@@ -45,6 +45,6 @@ def process_images_in_folder(folder_path, output_folder):
 
 # 主程序：指定输入和输出文件夹路径
 if __name__ == "__main__":
-    input_folder = "Massachusetts/labels"  # 输入文件夹路径
-    output_folder = "Massachusetts"  # 输出文件夹路径
+    input_folder = "INRIA(Before)/JPEGImages"  # 输入文件夹路径（INRIA(Before)/SegmentationClass）
+    output_folder = "INRIA/JPEGImages"  # 输出文件夹路径（INRIA/SegmentationClass）
     process_images_in_folder(input_folder, output_folder)

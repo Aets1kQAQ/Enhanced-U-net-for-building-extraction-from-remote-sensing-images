@@ -212,6 +212,9 @@ pip install -r requirements.txt
 ### Dataset Download
 Obtain dataset from INRIA official website:
 https://project.inria.fr/aerialimagelabeling/
+
+INRIA(Before) is the pre-processing file, and after processing, it is trained and verified in INRIA.
+
 ### Preprocessing
 1. Image Tiling:
    Input size: 5000×5000

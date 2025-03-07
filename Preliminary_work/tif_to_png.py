@@ -39,6 +39,6 @@ def convert_all_tif_in_folder(input_folder, output_folder):
 
 
 # 示例用法
-input_folder = 'Massachusetts/labels'  # 输入tif图片的文件夹路径
-output_folder = 'Massachusetts/labels（png）'  # 输出png图片的文件夹路径
+input_folder = 'INRIA(Before)/JPEGImages'  # 输入tif图片的文件夹路径（INRIA(Before)/SegmentationClass）
+output_folder = 'INRIA/JPEGImages'  # 输出png图片的文件夹路径（INRIA/SegmentationClass）
 convert_all_tif_in_folder(input_folder, output_folder)

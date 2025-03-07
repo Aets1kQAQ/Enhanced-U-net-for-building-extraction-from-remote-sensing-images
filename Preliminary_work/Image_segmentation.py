@@ -62,5 +62,5 @@ def process_images_in_folder(folder_path, tile_size=(500, 500)):
 
 
 # 示例用法
-folder_path = 'Massachusetts/images'  # 替换为你的文件夹路径
+folder_path = 'INRIA(Before)/JPEGImages'  # 替换为你的文件夹路径（INRIA(Before)/SegmentationClass）
 process_images_in_folder(folder_path)
