@@ -5,6 +5,15 @@
 
 本项目提出了一种改进的**SSAU-Net**模型，通过引入尺度敏感的注意力机制，显著提升了高分辨率遥感图像中建筑物的提取精度。代码基于PyTorch实现，在INRIA数据集上达到SOTA性能。
 
+## 引用声明
+
+本项目的部分代码或实现参考了以下开源项目：
+
+- **代码来源**: [yassouali/pytorch-segmentation](https://github.com/yassouali/pytorch-segmentation?tab=readme-ov-file#training)
+- **许可证**: 请参考原项目的 LICENSE 文件以了解具体的使用条款和限制。
+
+感谢原作者的贡献！
+
 ## 模型亮点 ✨
 - **尺度敏感注意力机制**：针对不同层次特征动态调整空间/通道注意力的组合顺序
 - **双路径特征增强**：
