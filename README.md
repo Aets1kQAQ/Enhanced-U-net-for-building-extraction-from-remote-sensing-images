@@ -9,6 +9,8 @@
 
 本项目的部分代码或实现参考了以下开源项目：
 
+作者在此代码基础上加入了注意力机制。
+
 - **代码来源**: [yassouali/pytorch-segmentation](https://github.com/yassouali/pytorch-segmentation?tab=readme-ov-file#training)
 - **许可证**: 请参考原项目的 LICENSE 文件以了解具体的使用条款和限制。
 
