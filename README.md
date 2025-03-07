@@ -154,28 +154,28 @@ class decoder1(decoder):
         x = self.up_conv(x)
 ```
 ## 实验过程
-### U-Net（无注意力）=======》A
+### U-Net（无注意力）=======>A
 ```
 self.down1 = encoder(64, 128)                      # 下采样阶段1
 self.down2 = encoder(128, 256)                     # 下采样阶段2
 self.down3 = encoder(256, 512)                     # 下采样阶段3
 self.down4 = encoder(512, 1024)                    # 下采样阶段4
 ```
-### CSAU-Net（先通道后空间）=======》B
+### CSAU-Net（先通道后空间）=======>B
 ```
 self.down1 = encoder1(64, 128)                      # 下采样阶段1
 self.down2 = encoder1(128, 256)                     # 下采样阶段2
 self.down3 = encoder1(256, 512)                     # 下采样阶段3
 self.down4 = encoder1(512, 1024)                    # 下采样阶段4
 ```
-### SCAU-Net（先空间后通道）=======》C
+### SCAU-Net（先空间后通道）=======>C
 ```
 self.down1 = encoder2(64, 128)                      # 下采样阶段1
 self.down2 = encoder2(128, 256)                     # 下采样阶段2
 self.down3 = encoder2(256, 512)                     # 下采样阶段3
 self.down4 = encoder2(512, 1024)                    # 下采样阶段4
 ```
-### SSAU-Net（尺度敏感组合）=======》D
+### SSAU-Net（尺度敏感组合）=======>D
 ```
 self.down1 = encoder2(64, 128)                      # 下采样阶段1
 self.down2 = encoder2(128, 256)                     # 下采样阶段2
@@ -205,4 +205,69 @@ self.down4 = encoder1(512, 1024)                    # 下采样阶段4
 pip install -r requirements.txt
 ```
 
-### 前期工作
+## 前期工作
+### 下载数据集
+访问INRIA官网获取数据集
+https://project.inria.fr/aerialimagelabeling/
+### 数据预处理
+1. 图像切割： 输入图像尺寸：5000×5000
+输出图像尺寸：500×500
+切割策略：滑动窗口（步长500×500）
+保存路径：
+```
+./INRIA/
+├── JPEGImages/       # 原始图像块
+└── SegmentationClass/# 标签图像块
+```
+```bash
+./Preliminary_work/Image_segmentation.py
+```
+2. 标签颜色转换： 背景：0 → RGB(0, 0, 0)不变，检查图片中的每个像素，如果像素不是黑色（即 (0, 0, 0)），则将其替换为白色（即 (255, 255, 255)）。
+```bash
+./Preliminary_work/Label_color_conversion.py
+```
+3. 数据集划分：
+训练集：70%
+验证集：20%
+测试集：10%
+并生成对应txt索引文件。
+```
+./data/(train、val、test)/building/
+├── ImageSets/
+    └── Segmentation/
+        ├── train.txt
+        ├── val.txt
+        └── test.txt
+```
+```bash
+./Preliminary_work/Create_label_txt.py
+```
+## 训练
+要训练模型，首先下载用于训练模型的数据集，然后选择所需的架构，将正确的路径添加到数据集并设置所需的超参数（配置文件详述如下），然后只需运行：
+```bash
+python train.py --config config.json
+```
+训练将自动在 GPU 上运行（如果检测到多个 GPU 并在配置文件中选择了多个 GPU，则使用 `torch.nn.DataParalled` 进行多 GPU 训练），如果没有，则使用 CPU。日志文件将保存在 `saved\runs` 中，而 `.pth` 检查点将保存在 `saved\` 中，要使用 tensorboard 监控训练，请运行：
+```bash
+tensorboard --logdir saved
+```
+
+<p align="center"><img src="images/tb1.png" align="center" width="900"></p>
+
+## 推理
+
+对于推理，我们需要一个 PyTorch 训练模型、我们想要分割的图像以及训练中使用的配置（以加载正确的模型和其他参数）
+```bash
+python inference.py --config config.json --model best_model.pth --images images_folder
+```
+
+以下是可用于推理的参数：
+```
+--output 将保存结果的文件夹（默认值：outputs）。
+--extension 要分割的图像的扩展名（默认值：jpg）。
+--images 包含要分割的图像的文件夹。
+--model 训练模型的路径。
+--mode 要使用的模式，选择“多尺度”或“滑动”进行推理（多尺度是默认行为）。
+--config 用于训练模型的配置文件。
+```
+
