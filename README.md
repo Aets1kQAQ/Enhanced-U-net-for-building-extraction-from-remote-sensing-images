@@ -297,4 +297,4 @@ Results obtained from (c) U-net, (d) CSAU-Net, (e) SCAU-Net, (f) SSAU-Net. (a), 
 
 <p align="center"><img src="images/Results.jpg" align="center" width="900"></p>
 
-https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13640/136400B/Enhanced-U-net-with-scale-sensitive-attention-mechanisms-for-building/10.1117/12.3065268.short
+https://doi.org/10.1117/12.3065268
